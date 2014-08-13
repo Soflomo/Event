@@ -1,0 +1,19 @@
+<?php
+/**
+ * (Pre)view page of event in admin
+ *
+ * @param Soflomo\Event\Entity\ListInterface  $list  Current event listing
+ * @param Soflomo\Event\Entity\EventInterface $event Current event
+ */
+?>
+
+<ul>
+    <li><a href="<?php echo $this->url('zfcadmin/eventlist', array('list' => $list->getSlug()))?>">Back to listing</a></li>
+    <li><a href="<?php echo $this->url('zfcadmin/eventlist/event/update', array(),array(),true)?>">Edit this event</a></li>
+</ul>
+
+<article>
+    <h1><?php echo $this->escapeHtml($event->getName())?></h1>
+    <p><?php echo $this->escapeHtml($event->getLead())?></p>
+    <p><?php echo $this->escapeHtml($event->getBody())?></p>
+</article>

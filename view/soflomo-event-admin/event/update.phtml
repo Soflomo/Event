@@ -1,0 +1,26 @@
+<?php
+/**
+ * Edit page of event in admin
+ *
+ * @param Soflomo\Event\Entity\ListInterface $list Current event listing
+ * @param Soflomo\EventAdmin\Form\EventForm  $form Form to create event
+ */
+?>
+
+<h1>Edit event</h1>
+
+<?php $form->prepare()?>
+<?php echo $this->form()->openTag($form)?>
+    <?php echo $this->formRow($form->get('name'))?>
+    <?php echo $this->formRow($form->get('lead')->setAttributes(array(
+        'cols' => 50,
+        'rows' => 10,
+    )))?>
+    <?php echo $this->formRow($form->get('body')->setAttributes(array(
+        'cols' => 50,
+        'rows' => 10,
+    )))?>
+    <?php echo $this->formRow($form->get('start_timestamp'))?>
+    <?php echo $this->formRow($form->get('end_timestamp'))?>
+    <button type="submit">Save</button>
+<?php echo $this->form()->closeTag()?>

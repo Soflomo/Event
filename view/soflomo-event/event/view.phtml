@@ -1,0 +1,15 @@
+<?php
+/**
+ * Detail of event
+ *
+ * @param Soflomo\Event\Entity\Event $event Event to be shown
+ */
+
+$this->headTitle($this->escapeHtmlAttr($event->getName()));
+?>
+
+<article>
+    <h1><?php echo $this->escapeHtml($event->getName())?></h1>
+    <p><?php echo $event->getLead()?></p>
+    <p><?php echo $event->getBody()?></p>
+</article>

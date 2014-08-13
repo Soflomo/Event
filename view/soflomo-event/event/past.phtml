@@ -1,0 +1,20 @@
+<?php
+/**
+ * Listing of past events
+ *
+ * @param Soflomo\Event\Entity\Events[] $events Array or past events
+ */
+?>
+<h1>Events</h1>
+
+<?php foreach ($events as $event):?>
+    <article>
+        <h2><a href="<?php echo $this->url('/view', array(
+            'event' => $event->getId(),
+            'slug'  => $this->slug($event->getName()),
+        ))?>">
+            <?php echo $this->escapeHtml($event->getName())?>
+        </a></h2>
+        <p><?php echo $event->getLead()?></p>
+    </article>
+<?php endforeach ?>
