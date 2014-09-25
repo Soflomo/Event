@@ -47,7 +47,7 @@ use Zend\Form\Form;
 class EventForm extends Form implements
     InputFilter\InputFilterProviderInterface
 {
-    const DATE_TIME_FORMAT = 'Y-m-d h:i';
+    const DATE_TIME_FORMAT = 'Y-m-d H:i';
 
     public function __construct($name = null)
     {
