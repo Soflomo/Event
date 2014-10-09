@@ -38,9 +38,9 @@
  * @link        http://soflomo.com
  */
 
-namespace Soflomo\BlogAdmin\Factory;
+namespace Soflomo\EventAdmin\Factory;
 
-use Soflomo\BlogAdmin\Controller\IndexController;
+use Soflomo\EventAdmin\Controller\IndexController;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -48,7 +48,7 @@ class IndexControllerFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $sl)
     {
-        $repository = $sl->getServiceLocator()->get('Soflomo\Blog\Repository\Blog');
+        $repository = $sl->getServiceLocator()->get('Soflomo\Event\Repository\ListRepository');
         $controller = new IndexController($repository);
 
         return $controller;
