@@ -3,8 +3,9 @@
  * Listing of events in admin
  *
  * @param Soflomo\Event\Entity\ListInterface  $list        Current event listing
- * @param Soflomo\Event\Entity\EventInterface $paginator[] Events from this listing
- * @param Zend\Paginator\Paginator            $paginator   Events from this listing
+ * @param Soflomo\Event\Entity\EventInterface $paginator[] Upcoming events from this listing
+ * @param Zend\Paginator\Paginator            $paginator   Upcoming events from this listing
+ * @param Soflomo\Event\Entity\EventInterface $past        Short array of latest past events
  */
 ?>
 
@@ -27,3 +28,14 @@
 <?php echo $this->paginationControl($paginator,
                                     'Sliding',
                                     'soflomo-event-admin/pagination/control', array('route' => 'zfcadmin/eventlist', 'slug' => $list->getSlug())); ?>
+
+<?php if (count($pastEvents)): ?>
+<ul>
+    <?php foreach ($pastEvents as $event): ?>
+            <li><a href="<?php echo $this->url('zfcadmin/eventlist/event/view', ['event' => $event->getId()], [], true)?>">
+        <?php echo $this->escapeHtml($event->getName())?>
+    </a></li>
+    <?php endforeach ?>
+</ul>
+<?php endif ?>
+<p><a href="<?= $this->url('zfcadmin/eventlist/past',[],[],true)?>">More past events</a></p>

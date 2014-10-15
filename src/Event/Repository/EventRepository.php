@@ -132,7 +132,7 @@ class EventRepository extends EntityRepository
         $end = new DateTime;
         $qb  = $this->createQueryBuilder('e');
         $qb->andWhere('e.list = :list')
-           ->andWhere('e.end >= :end')
+           ->andWhere('e.end <= :end')
            ->setParameter('list', $list)
            ->setParameter('end', $end)
            ->orderBy('e.start', 'DESC');
