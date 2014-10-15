@@ -48,7 +48,8 @@ return array(
         'upcoming_limit'       => 10,
         'past_range'           => 'P30D',
         'past_limit'           => 10,
-        'admin_listing_limit'  => 10,
+        'admin_paginator_listing_limit' => 10,
+        'admin_secondary_listing_limit' => 10,
 
         'sitemap'                => array(
             'changefreq' => '',
@@ -145,6 +146,15 @@ return array(
                         ),
                         'may_terminate' => true,
                         'child_routes'  => array(
+                            'past' => array(
+                                'type'    => 'literal',
+                                'options' => array(
+                                    'route' => '/past',
+                                    'defaults' => array(
+                                        'action' => 'past',
+                                    ),
+                                ),
+                            ),
                             'event' => array(
                                 'type'    => 'segment',
                                 'options' => array(

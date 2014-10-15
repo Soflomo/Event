@@ -68,7 +68,8 @@ class ModuleOptions extends AbstractOptions
      */
     protected $upcomingLimit;
     protected $pastLimit;
-    protected $adminListingLimit;
+    protected $adminPaginatorListingLimit;
+    protected $adminSecondaryListingLimit;
 
     /**
      * Getter for listEntityClass
@@ -225,25 +226,46 @@ class ModuleOptions extends AbstractOptions
     }
 
     /**
-     * Getter for adminListingLimit
+     * Getter for adminPaginatorListingLimit
      *
      * @return mixed
      */
-    public function getAdminListingLimit()
+    public function getAdminPaginatorListingLimit()
     {
-        return $this->adminListingLimit;
+        return $this->adminPaginatorListingLimit;
     }
 
     /**
-     * Setter for adminListingLimit
+     * Setter for adminPaginatorListingLimit
      *
-     * @param mixed $adminListingLimit Value to set
+     * @param mixed $limit Value to set
      * @return self
      */
-    public function setAdminListingLimit($adminListingLimit)
+    public function setAdminPaginatorListingLimit($limit)
     {
-        $this->adminListingLimit = $adminListingLimit;
+        $this->adminPaginatorListingLimit = $limit;
         return $this;
     }
 
+    /**
+     * Getter for adminSecondaryListingLimit
+     *
+     * @return mixed
+     */
+    public function getAdminSecondaryListingLimit()
+    {
+        return $this->adminSecondaryListingLimit;
+    }
+
+    /**
+     * Setter for adminSecondaryListingLimit
+     *
+     * @param mixed $limit Value to set
+     * @return self
+     */
+    public function setAdminSecondaryListingLimit($limit)
+    {
+        $this->adminSecondaryListingLimit = $limit;
+        return $this;
+    }
 }

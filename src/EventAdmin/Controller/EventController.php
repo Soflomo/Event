@@ -80,13 +80,32 @@ class EventController extends AbstractActionController
     {
         $list  = $this->getList();
         $page  = $this->params('page');
-        $limit = $this->getOptions()->getAdminListingLimit();
 
-        $paginator = $this->getEventRepository()->getUpcomingPaginator($list, $page, $limit);
+        $paginatorLimit = $this->getOptions()->getAdminPaginatorListingLimit();
+        $secondaryLimit = $this->getOptions()->getAdminSecondaryListingLimit();
+        $pastRange      = $this->getOptions()->getPastRange();
+
+        $paginator  = $this->getEventRepository()->getUpcomingPaginator($list, $page, $paginatorLimit);
+        $pastEvents = $this->getEventRepository()->findPast($list, $pastRange, $secondaryLimit);
 
         return array(
-            'list'      => $list,
-            'paginator' => $paginator,
+            'list'       => $list,
+            'paginator'  => $paginator,
+            'pastEvents' => $pastEvents
+        );
+    }
+
+    public function pastAction()
+    {
+        $list  = $this->getList();
+        $page  = $this->params('page');
+
+        $limit     = $this->getOptions()->getAdminPaginatorListingLimit();
+        $paginator = $this->getEventRepository()->getPastPaginator($list, $page, $limit);
+
+        return array(
+            'list'       => $list,
+            'paginator'  => $paginator,
         );
     }
 
