@@ -141,6 +141,7 @@ class EventController extends AbstractActionController
             if ($form->isValid()) {
                 $this->getService()->create($event);
 
+                $this->flashMessenger()->addMessage('Event created successfully.');
                 return $this->redirect()->toRoute('zfcadmin/eventlist/event/view', array(
                     'list'  => $list->getSlug(),
                     'event' => $event->getId(),
@@ -175,6 +176,7 @@ class EventController extends AbstractActionController
             if ($form->isValid()) {
                 $this->getService()->update($event);
 
+                $this->flashMessenger()->addMessage('Event saved successfully.');
                 return $this->redirect()->toRoute('zfcadmin/eventlist/event/update', array(
                     'list'  => $list->getSlug(),
                     'event' => $event->getId(),
@@ -217,6 +219,7 @@ class EventController extends AbstractActionController
 
         $service->delete($event);
 
+        $this->flashMessenger()->addMessage('Event deleted successfully.');
         return $this->redirect()->toRoute('zfcadmin/eventlist', array(
             'list' => $list->getSlug(),
         ));
