@@ -107,13 +107,13 @@ return array(
                     'by-date' => array(
                         'type'    => 'segment',
                         'options' => array(
-                            'route'    => '/:from/:to',
+                            'route'    => '/:start/:end',
                             'defaults' => array(
                                 'action' => 'by-date',
                             ),
                             'constraints' => array(
-                                'from' => '[0-9]{2}-[0-9]{2}-[0-9]{4}',
-                                'to'   => '[0-9]{2}-[0-9]{2}-[0-9]{4}',
+                                'start' => '[0-9]{2}-[0-9]{2}-[0-9]{4}',
+                                'end'   => '[0-9]{2}-[0-9]{2}-[0-9]{4}',
                             ),
                         ),
                     ),

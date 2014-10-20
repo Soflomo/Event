@@ -74,6 +74,20 @@ class EventRepository extends EntityRepository
         return $this->getPastQuery($list, $range, $limit)->getResult();
     }
 
+    public function findInRange(EventList $list, DateTime $start, DateTime $end)
+    {
+        $qb = $this->createQueryBuilder('e');
+        $qb->andWhere('e.list = :list')
+           ->andWhere('e.start >= :start')
+           ->andWhere('e.end <= :end')
+           ->setParameter('list', $list)
+           ->setParameter('start', $start)
+           ->setParameter('end', $end)
+           ->orderBy('e.start', 'ASC');
+
+        return $qb->getQuery()->getResult();
+    }
+
     public function getUpcomingPaginator(EventList $list, $page, $limit)
     {
         $query     = $this->getUpcomingQuery($list);
