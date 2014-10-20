@@ -95,16 +95,12 @@ return array(
                             ),
                         ),
                     ),
-                    'archive' => array(
-                        'type'    => 'segment',
+                    'past' => array(
+                        'type'    => 'literal',
                         'options' => array(
-                            'route'    => '/archive[/:page]',
+                            'route'    => '/past',
                             'defaults' => array(
-                                'action' => 'archive',
-                                'page'   => '1',
-                            ),
-                            'constraints' => array(
-                                'page' => '[0-9]+',
+                                'action' => 'past',
                             ),
                         ),
                     ),
