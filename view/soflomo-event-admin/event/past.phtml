@@ -1,0 +1,29 @@
+<?php
+/**
+ * Listing of past events in admin
+ *
+ * @param Soflomo\Event\Entity\ListInterface  $list        Current event listing
+ * @param Soflomo\Event\Entity\EventInterface $paginator[] Events from this listing
+ * @param Zend\Paginator\Paginator            $paginator   Events from this listing
+ */
+?>
+
+<h1>Past event listing</h1>
+
+<a href="<?php echo $this->url('zfcadmin/eventlist', [], [], true)?>">
+    Back
+</a>
+
+<?php if (count($paginator)): ?>
+<ul>
+<?php foreach ($paginator as $event): ?>
+    <li><a href="<?php echo $this->url('zfcadmin/eventlist/event/view', ['event' => $event->getId()], [], true)?>">
+        <?php echo $this->escapeHtml($event->getName())?>
+    </a></li>
+<?php endforeach; ?>
+</ul>
+<?php endif; ?>
+
+<?php echo $this->paginationControl($paginator,
+                                    'Sliding',
+                                    'soflomo-event-admin/pagination/control', array('route' => 'zfcadmin/eventlist', 'slug' => $list->getSlug())); ?>

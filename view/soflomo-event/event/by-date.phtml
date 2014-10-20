@@ -1,0 +1,23 @@
+<?php
+/**
+ * Listing of events selected by date
+ *
+ * @param Soflomo\Event\Entity\Events[] $events Array or past events
+ */
+use IntlDateFormatter as Format;
+?>
+<h1>Events</h1>
+
+<p>From <?= $this->dateFormat($start, Format::SHORT)?> until <?= $this->dateFormat($end, Format::SHORT)?></p>
+
+<?php foreach ($events as $event):?>
+    <article>
+        <h2><a href="<?php echo $this->url('/view', array(
+            'event' => $event->getId(),
+            'slug'  => $this->slug($event->getName()),
+        ))?>">
+            <?php echo $this->escapeHtml($event->getName())?>
+        </a></h2>
+        <p><?php echo $event->getLead()?></p>
+    </article>
+<?php endforeach ?>

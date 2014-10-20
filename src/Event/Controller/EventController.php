@@ -45,6 +45,7 @@ use Soflomo\Event\Options\ModuleOptions;
 use Soflomo\Event\Repository\EventRepository;
 use Soflomo\Event\Repository\ListRepository;
 
+use DateTime;
 use BaconStringUtils\Slugifier;
 
 use Zend\Mvc\Controller\AbstractActionController;
@@ -120,6 +121,31 @@ class EventController extends AbstractActionController
 
         return array(
             'event' => $event,
+        );
+    }
+
+    public function byDateAction()
+    {
+        $start = DateTime::createFromFormat('d-m-Y', $this->params('start'));
+        $end   = DateTime::createFromFormat('d-m-Y', $this->params('end'));
+
+        if (false === $start || false === $end) {
+            throw new Exception\InvalidDateTimeException(
+                'The start or enddate seems an invalid format'
+            );
+        } elseif ($start > $end) {
+            throw new Exception\InvalidDateTimeException(
+                'The start must be before the end date'
+            );
+        }
+
+        $list  = $this->getList();
+        $events = $this->getEventRepository()->findInRange($list, $start, $end);
+
+        return array(
+            'events' => $events,
+            'start'  => $start,
+            'end'    => $end,
         );
     }
 
